@@ -1,7 +1,5 @@
 import { middleware, MiddlewareConfig, WebhookEvent } from '@line/bot-sdk';
 import serverlessExpress from '@vendia/serverless-express';
-// import bodyParser from 'body-parser';
-// import cors from 'cors';
 import express, { Request, Response } from 'express';
 import * as sourceMapSupport from 'source-map-support';
 
