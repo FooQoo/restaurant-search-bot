@@ -36,11 +36,15 @@
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
-    "husky": "^8.0.2",
+    "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "2.8.8",
     "serverless-esbuild": "^1.43.1",
     "serverless-offline": "^12.0.4",
     "typescript": "^5.0.4"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,ts,json}": "prettier --write"
   }
 }
