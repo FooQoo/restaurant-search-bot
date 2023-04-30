@@ -5,17 +5,11 @@ import serverlessExpress from '@vendia/serverless-express';
 import express, { Request, Response } from 'express';
 import * as sourceMapSupport from 'source-map-support';
 
-import { searchRestaurant } from './lib/langchain/chat';
 import { textEventHandler } from './lib/line/textEventHandler';
 
 sourceMapSupport.install();
 
 const app = express();
-// const router = express.Router();
-
-// router.use(bodyParser.json());
-// router.use(cors());
-// router.use(bodyParser.urlencoded({ extended: true }));
 
 // middleware
 const middlewareConfig: MiddlewareConfig = {
@@ -57,18 +51,6 @@ app.post(
     });
   }
 );
-
-app.get(basePath, async (_req: Request, res: Response) => {
-  console.info(
-    await searchRestaurant('おすすめのレストランを教えてください。')
-  );
-
-  return res.status(200).json({
-    message: 'Hello from root!',
-  });
-});
-
-// app.use('/', router);
 
 app.use((_req, res) => {
   return res.status(404).json({
