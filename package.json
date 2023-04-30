@@ -7,7 +7,11 @@
     "type-check": "tsc --noEmit",
     "deploy": "serverless deploy",
     "remove": "serverless remove",
-    "dev": "serverless offline"
+    "dev": "serverless offline",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write 'src/**/*.{js,ts,json}'",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.5.2",

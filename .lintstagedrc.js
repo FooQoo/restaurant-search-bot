@@ -1,4 +1,4 @@
 module.exports = {
-  '*.{js,ts}': ["yarn lint:fix"],
-  '*': ['yarn format']
+  '*.{js,ts}': ["npm lint:fix"],
+  '*': ['npm format']
 }

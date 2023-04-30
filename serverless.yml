@@ -30,10 +30,6 @@ functions:
     events:
       - http:
           method: ANY
-          path: '/api/'
-          cors: true
-      - http:
-          method: ANY
           path: '/api/webhook'
           cors: true
     environment:
