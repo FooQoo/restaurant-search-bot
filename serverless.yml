@@ -1,0 +1,48 @@
+service: restaurant-search-bot
+frameworkVersion: '3'
+
+package:
+  individually: true
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude: ['aws-sdk']
+    target: 'node18'
+    define: { 'require.resolve': undefined }
+    platform: 'node'
+    concurrency: 10
+    watch:
+      pattern: 'src/**/*.ts' # match only typescript files in src directory
+      ignore: 'temp/**/*'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  app:
+    handler: src/handler.handler
+    timeout: 30 # seconds, API Gateway has a timeout of 30 seconds
+    events:
+      - http:
+          method: ANY
+          path: '/api/'
+          cors: true
+      - http:
+          method: ANY
+          path: '/api/webhook'
+          cors: true
+    environment:
+      CHANNEL_SECRET: ${env:CHANNEL_SECRET}
+      CHANNEL_ACCESS_TOKEN: ${env:CHANNEL_ACCESS_TOKEN}
+      OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+      SUPABASE_PRIVATE_KEY: ${env:SUPABASE_PRIVATE_KEY}
+      SUPABASE_URL: ${env:SUPABASE_URL}
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
